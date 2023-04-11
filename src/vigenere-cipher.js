@@ -20,13 +20,41 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(direct = true){
+    this.direct = direct
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  encrypt(message, key) {
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let bigMsg = message.toUpperCase();
+    let bigKey = key.toUpperCase();
+    let res = '';
+    let index = 0;
+    for (let i = 0; i < bigMsg.length; i++) {
+      if (alpha.includes(bigMsg[i])) {
+        let j = alpha.indexOf(bigKey[index]) + alpha.indexOf(bigMsg[i]);
+        if (j >= alpha.length) j = j - alpha.length;
+        res += alpha[j];
+        index++;
+        if (index == bigKey.length) index = 0;
+      } else res += message[i]
+    }
+    return this.direct == true ? res : res.split('').reverse().join('')
+  }
+  decrypt(message, key) {
+    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let bigKey = key.toUpperCase();
+    let res = '';
+    let index = 0;
+    for (let i = 0; i < message.length; i++) {
+      if (alpha.includes(message[i])) {
+        let j = alpha.indexOf(message[i]) - alpha.indexOf(bigKey[index]);
+        if (j < 0) j = alpha.length + j;
+        res += alpha[j];
+        index++;
+        if (index == bigKey.length) index = 0;
+      } else res += message[i]
+    }
+    return this.direct == true ? res : res.split('').reverse().join('')
   }
 }
 
