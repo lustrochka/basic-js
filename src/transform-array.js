@@ -14,6 +14,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 function transform(arr) {
+  if (!Array.isArray(arr)) throw new Error("'arr' parameter must be an instance of the Array!");
   let controls = ['--discard-next', '--discard-prev', '--double-next', '--double-prev'];
   let res = arr.slice(0);
   for (let i = 0; i < res.length; i++) {

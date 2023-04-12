@@ -40,6 +40,7 @@ class VigenereCipheringMachine {
     }
     return this.direct == true ? res : res.split('').reverse().join('')
   }
+
   decrypt(message, key) {
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let bigKey = key.toUpperCase();
@@ -57,6 +58,7 @@ class VigenereCipheringMachine {
     return this.direct == true ? res : res.split('').reverse().join('')
   }
 }
+
 
 module.exports = {
   VigenereCipheringMachine
