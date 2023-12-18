@@ -24,6 +24,7 @@ class VigenereCipheringMachine {
     this.direct = direct
   }
   encrypt(message, key) {
+    if (!message || !key) throw new Error('Incorrect arguments!');
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let bigMsg = message.toUpperCase();
     let bigKey = key.toUpperCase();
@@ -42,6 +43,7 @@ class VigenereCipheringMachine {
   }
 
   decrypt(message, key) {
+    if (!message || !key) throw new Error('Incorrect arguments!');
     const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let bigKey = key.toUpperCase();
     let res = '';
